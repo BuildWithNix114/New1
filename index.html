@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Demo — Password step</title>
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,Arial;background:#f4f6f8;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;}
+    .card{background:#fff;padding:28px;border-radius:12px;box-shadow:0 8px 30px rgba(15,23,42,0.06);width:420px;max-width:100%}
+    label{display:block;margin-bottom:8px;font-weight:600}
+    input{width:100%;padding:12px;border-radius:8px;border:1px solid #e6e9ee;font-size:15px}
+    button{margin-top:12px;padding:12px 16px;border-radius:8px;border:none;background:#2563eb;color:#fff;font-weight:600;cursor:pointer}
+    .note{font-size:13px;color:#6b7280;margin-top:12px}
+    .error{margin-top:12px;color:#b91c1c;background:#fff1f2;padding:10px;border-radius:8px}
+  </style>
+</head>
+<body>
+  <main class="card" role="main">
+    <h1>Step 1 — Enter Password (Demo)</h1>
+    <p class="note">This is a local demo only. Do not use real credentials unless you control the receiver. (Demo password: <strong>demo123</strong>)</p>
+
+    <!-- Form posts via POST to external submit-form URL -->
+    <form id="pw-form"
+          method="post"
+          action="https://submit-form.com/JwN5wK5Vm"
+          autocomplete="off">
+      <!-- hidden field to indicate which step this is -->
+      <input type="hidden" name="step" value="password">
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" required autocomplete="off" placeholder="Enter password (demo)">
+      <button type="submit">Continue</button>
+    </form>
+
+    <!-- server error display retained for local server use (if you redirect back with ?error=...) -->
+    <div id="server-error">
+      <script>
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('error')) {
+          const d = document.createElement('div');
+          d.className = 'error';
+          d.textContent = decodeURIComponent(params.get('error'));
+          document.getElementById('server-error').appendChild(d);
+        }
+      </script>
+    </div>
+
+    <p class="note">Form action: <code>https://submit-form.com/JwN5wK5Vm</code></p>
+  </main>
+</body>
+</html>
